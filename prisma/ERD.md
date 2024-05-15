@@ -29,8 +29,8 @@ erDiagram
   - `name`: name of this shipping bundle.
   - `sellerId`: 
   - `FreeShippingThreshold`: If method column's value is `FreeOverThreshold`, This value is not null.
-  - `method`: Shipping cost calculation method
-  - `status`: If this value is inactive, bundle shipping criteria will not be applied.
+  - `method`: `MIN` OR `MAX` OR `FREE_OVER_THRESHOLD`. Shipping cost calculation method
+  - `status`: `ACTIVE` OR `INACTIVE`. If this value is inactive, bundle shipping criteria will not be applied.
   - `createdAt`: DateTime this row was created.
   - `updatedAt`: DateTime this row was updated.
   - `isDeleted`: If this row was deleted, It will be true. And `updatedAt` column will mean `deletedAt`.

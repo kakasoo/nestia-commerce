@@ -19,24 +19,13 @@ model ShippingBundle {
   name                  String /// name of this shipping bundle.
   sellerId              String
   FreeShippingThreshold Int? /// If method column's value is `FreeOverThreshold`, This value is not null.
-  method                ShippingFeeCalculationMethod /// Shipping cost calculation method
-  status                Status /// If this value is inactive, bundle shipping criteria will not be applied.
+  method                ShippingFeeCalculationMethod /// `MIN` OR `MAX` OR `FREE_OVER_THRESHOLD`. Shipping cost calculation method
+  status                Status /// `ACTIVE` OR `INACTIVE`. If this value is inactive, bundle shipping criteria will not be applied.
   createdAt             DateTime                     @default(now()) /// DateTime this row was created.
   updatedAt             DateTime                     @default(now()) /// DateTime this row was updated.
   isDeleted             Boolean                      @default(false) /// If this row was deleted, It will be true. And `updatedAt` column will mean `deletedAt`.
 
   Seller Seller @relation(fields: [sellerId], references: [id])
-}
-
-enum ShippingFeeCalculationMethod {
-  Min // Use the product's smallest `deliveryFee` in the bundle.
-  Max // Use the product's biggest `deliveryFee` in the bundle.
-  FreeOverThreshold // "Free Shipping Threshold" refers to the criteria where shipping fees are waived if the total value of items ordered by a customer exceeds a certain amount.
-}
-
-enum Status {
-  ACTIVE
-  INACTIVE
 }
 
 /// @namespace Seller
@@ -124,6 +113,17 @@ model SellerLog {
   isDeleted Boolean  @default(false) /// If this row was deleted, It will be true. And `updatedAt` column will mean `deletedAt`.
 
   Seller Seller? @relation(fields: [sellerId], references: [id])
+}
+
+enum ShippingFeeCalculationMethod {
+  MIN // Use the product's smallest `deliveryFee` in the bundle.
+  MAX // Use the product's biggest `deliveryFee` in the bundle.
+  FREE_OVER_THRESHOLD // "Free Shipping Threshold" refers to the criteria where shipping fees are waived if the total value of items ordered by a customer exceeds a certain amount.
+}
+
+enum Status {
+  ACTIVE
+  INACTIVE
 }
 
 enum Gender {
