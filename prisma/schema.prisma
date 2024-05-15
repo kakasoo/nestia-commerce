@@ -18,7 +18,7 @@ model ShippingBundle {
   id                    String                       @id @default(uuid())
   name                  String /// name of this shipping bundle.
   sellerId              String
-  FreeShippingThreshold Int? /// If method column's value is `FreeOverThreshold`, This value is not null.
+  freeShippingThreshold Int? /// If method column's value is `FreeOverThreshold`, This value is not null.
   method                ShippingFeeCalculationMethod /// `MIN` OR `MAX` OR `FREE_OVER_THRESHOLD`. Shipping cost calculation method
   status                Status /// `ACTIVE` OR `INACTIVE`. If this value is inactive, bundle shipping criteria will not be applied.
   createdAt             DateTime                     @default(now()) /// DateTime this row was created.

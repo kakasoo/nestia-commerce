@@ -13,7 +13,7 @@ erDiagram
   String id PK
   String name
   String sellerId FK
-  Int FreeShippingThreshold "nullable"
+  Int freeShippingThreshold "nullable"
   ShippingFeeCalculationMethod method
   Status status
   DateTime createdAt
@@ -28,7 +28,7 @@ erDiagram
   - `id`: 
   - `name`: name of this shipping bundle.
   - `sellerId`: 
-  - `FreeShippingThreshold`: If method column's value is `FreeOverThreshold`, This value is not null.
+  - `freeShippingThreshold`: If method column's value is `FreeOverThreshold`, This value is not null.
   - `method`: `MIN` OR `MAX` OR `FREE_OVER_THRESHOLD`. Shipping cost calculation method
   - `status`: `ACTIVE` OR `INACTIVE`. If this value is inactive, bundle shipping criteria will not be applied.
   - `createdAt`: DateTime this row was created.
